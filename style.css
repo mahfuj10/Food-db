@@ -1,0 +1,8 @@
+#items-container{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    column-gap: 30px;
+    row-gap: 40px;
+    margin-top: 50px;
+}
