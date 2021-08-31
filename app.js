@@ -1,15 +1,14 @@
-document.getElementById('spinner').style.display = 'none';
-
-document.getElementById('search-button').addEventListener('click', ()=>{
-    
+document.getElementById('spinner').style.display = 'none';//spinner
 const searchInput = document.getElementById('input-form');
 const errorMessage = document.getElementById('error-message');
+const searchError = document.getElementById('search-error');
 
- if(searchInput.value == 0){
-    errorMessage.innerHTML =`<h4 class="text-white bg-danger rounded shadow-lg mx-auto w-50 p-2 text-center">Please search the food what you want !</h4>`
+document.getElementById('search-button').addEventListener('click', ()=>{
+
+if(searchInput.value == 0){
+        errorMessage.innerHTML =`<h4 class="text-white bg-danger rounded shadow-lg mx-auto w-50 p-2 text-center">Please search the food what you want !</h4>`
 }
 else{
-
     document.getElementById('spinner').style.display = 'block';
     errorMessage.style.display = "none";
     const searchValue = searchInput.value;
@@ -18,21 +17,27 @@ else{
     .then(res => res.json())
     .then(data => displayMeals(data))
 }
-    searchInput.value = '';
+    
 })
-
 
 const displayMeals = data => {
 
 document.getElementById('spinner').style.display = 'none';//spinner
 
 if(data.meals == null){
-    console.log(5)
+    
+    searchError.classList.add('search-error')
+    searchError.innerHTML = `<div>
+                             <p class="card-text">
+                             Your search ---- <b>${searchInput.value}</b> --- did not match any of our set meal. Please enter a
+                             correct name.
+                             </p>
+                             </div>`
 }
 else{   
     const itemParent = document.getElementById('items-container');
     itemParent.textContent = '';
-
+    searchError.style.display = 'none';
     for(const meal of data.meals){
         const div = document.createElement('div');
         div.classList.add('card')
@@ -45,7 +50,7 @@ else{
         itemParent.appendChild(div);
     }
 }
-
+    searchInput.value = '';
 }
 
 // item details part

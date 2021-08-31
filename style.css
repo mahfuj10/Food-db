@@ -6,3 +6,15 @@
     row-gap: 40px;
     margin-top: 50px;
 }
+
+.search-error{
+    padding: 30px;
+    width: 250px;
+    margin: 0 auto;
+    margin-top: 150px;
+    background-color: rgb(31, 90, 90);
+    background-position: center;
+    border-radius: 10px;
+    color: whitesmoke;
+    font-size: 20px;
+}
